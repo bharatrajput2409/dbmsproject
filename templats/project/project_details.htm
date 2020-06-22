@@ -1,0 +1,97 @@
+{% extends 'account/base.htm' %}
+{% block title%}
+<title>project details</title>
+{%endblock%}
+{% block content%}
+    <div class="prodetailsbottomdiv">
+        <div style="text-align: center;width: 100%;margin: 0;">
+            <h2>{{project.name}},{{project.location}}</h2>
+        </div>
+        <div class="proimg">
+            {%if photos%}
+            {% for photo in photos%}
+            <a href="{{photo.img.url}}" download><img class="pro_img" src="{{photo.img.url}}" alt=""></a>
+            {%endfor%}
+            {%else%}           
+                <p>no image found for this project</p>
+            {%endif%}
+        </div>
+        <div class="prodetails">
+            <p style="text-align:center;">Project Details</p>
+            <div style="width: 80%;margin:  20px auto;">
+                <p>Project Budget : {{project.budget}}</p>
+                <p>Project Deadline : {{project.deadline}}</p>
+                <p>Number of Employee Working : {{project.no_of_emp}}</p>
+                <p style="margin: 0;">Head of project</p>
+                <table style="margin: 0;width: 100%;">
+                    <tr>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Address</th>
+                        <th>Phone no.</th>
+                        <th>Age</th>
+                        <th>employee details</th>
+                    </tr>
+                    <tr>
+                        <td>{{hop.first_name}} {{hop.last_name}}</td>
+                        <td>{{hop.username}}</td>
+                        <td>{{hop_details.address}}</td>
+                        <td>{{hop_details.phone_no}}</td>
+                        <td>{{hop_details.age}}</td>
+                        <td><a href="{% url 'employeeprofile' hop_details.id %}">view details</a></td>
+                    </tr>                                        
+                </table>
+            </div>
+            <div style="width:80%;margin:  20px auto;">
+                <p style="margin: 0;">Project Managers</p>
+                <table style="width: 100%;margin: 0;">
+                    <tr>
+                        <th>S.no.</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Address</th>
+                        <th>Phone no.</th>
+                        <th>Age</th>
+                        <th>employee details</th>
+                    </tr>
+                    {% for mgr in allmgrs %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{ mgr.user1.first_name }} {{mgr.user1.last_name}}</td>
+                        <td>{{mgr.user1.username}}</td>
+                        <td>{{mgr.user2.address}}</td>
+                        <td>{{mgr.user2.phone_no}}</td>
+                        <td>{{mgr.user2.age}}</td>
+                        <td><a href="{% url 'employeeprofile' mgr.user1.id %}">view details</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+            <div style="width:80%;margin:  20px auto;">
+                <p style="margin: 0;">Project Site Engineer</p>
+                <table style="width: 100%;margin: 0;">
+                    <tr>
+                        <th>S.no.</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Address</th>
+                        <th>Phone no.</th>
+                        <th>Age</th>
+                        <th>employee details</th>
+                    </tr>
+                    {% for siteeng in siteengs %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{siteeng.user1.first_name}} {{siteeng.user1.last_name}}</td>
+                        <td>{{siteeng.user1.username}}</td>
+                        <td>{{siteeng.user2.address}}</td>
+                        <td>{{siteeng.user2.phone_no}}</td>
+                        <td>{{siteeng.user2.age}}</td>
+                        <td><a href="{% url 'employeeprofile' siteeng.user1.id %}">view details</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+        </div>        
+    </div>
+{%endblock%}

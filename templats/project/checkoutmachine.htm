@@ -1,0 +1,112 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>employee profile</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/userprofile.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="profileimgdiv">
+            <div class="img">
+                <img  class="profileimg" src="{% static 'media/me.jpg' %}">
+            </div>
+            <div class="username">
+                <h3>{{emp.user1.first_name}} {{emp.user1.last_name}}</h3>
+            </div>
+        </div>
+        <div class="introdiv">
+            <div class="introleft"">
+                <div style="width: 100%;height: 10vh;background-color: #fff;border-radius: 20px;margin: 3.33vh 0px;">
+                    <a href="/account/reportproblem?emp_id={{emp.user1.id}}" style="margin: auto;">Reptor Problem</a>
+                </div>
+                <div style="width:100%;min-height: 20vh;background-color: #fff;border-radius: 20px;margin: 3.33vh 0px;">
+                    <ul>
+                        <li>lives in {{pro.location}}</li>
+                        <li style="overflow-wrap: break-word;">from {{emp.user2.address}}</li>
+                        <li>working as {{emp.user2.post}}</li>
+                        <li>working on {{pro.name}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="introright">
+                <a>Leave Message</a>
+                <a href="/project/previousmachines?employeeid={{emp.user1.id}}">Check previously issued equipments</a>
+            </div>
+        </div>
+        <div class="attendance">
+            <div style="display: flex; width: 100%;">
+                {%for m in messages %}
+                    <p style="color: red;margin: auto;">{{m}}</p>
+                {%endfor%}
+            </div>
+            Issued machines:
+            {% if machine_issued %}
+            <table>
+                <tr>
+                    <th>s.no</th>
+                    <th>machine </th>
+                    <th>machine id</th>
+                    <th>Issued date</th>
+                    <th>Returned date</th>
+                    <th>check out machine</th>
+                 </tr>
+                    {% for m in machine_issued %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{m.machine_category}}</td>
+                            <td>{{m.machine}}</td>
+                            <td>{{m.issued_date}}</td>
+                            {%if m.returned_date == date %}
+                            <td>due</td>
+                            <td><a href="/project/checkout?machine={{m.machine_id}}&empid={{emp.user1.id}}">check out</a></td>
+                            {%else%}
+                            <td>{{m.returned_date}}</td>
+                            <td style="color: green;">already checked out</td>
+                            {%endif%}
+                            
+                        </tr>
+                    {%endfor%}
+            </table>
+            {%else%}
+                    <p style="color: red;">No machine issued !</p>
+            {% endif%}
+            Issued Tools:
+            {% if tool_issued %}
+            <table>
+                <tr>
+                    <th>s.no</th>
+                    <th>Tool </th>
+                    <th>Tool id</th>
+                    <th>Quantity</th>
+                    <th>Issued date</th>
+                    <th>Returned date</th>
+                    <th>check out machine</th>
+                 </tr>
+                    {% for t in tool_issued %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{t.tool}}</td>
+                            <td>{{t.tool_id}}</td>
+                            <td>{{t.qunatity_issued}}</td>
+                            <td>{{t.issued_date}}</td>
+                            {%if t.returned_date == date %}
+                            <td>due</td>
+                            <td><a href="/project/checkout?tool={{t.id}}&empid={{emp.user1.id}}">check out</a></td>
+                            {%else%}
+                            <td>{{t.returned_date}}</td>
+                            <td style="color: green;">already checked out</td>
+                            {%endif%}
+                            
+                        </tr>
+                    {%endfor%}
+            </table>
+            {%else%}
+                    <p style="color: red;">No Tools issued !</p>
+            {% endif%}
+        </div>
+    </div>    
+</body>
+</html>

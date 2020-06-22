@@ -1,0 +1,31 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.register-box {
+    width: 300px;
+    box-shadow: 0 0 30px 0 rgb(0, 0, 0, 0.3);
+    background: #fff;
+    padding: 20px;
+    margin: 1% auto 0;
+    text-align: center;
+    border-radius: 20px;
+}
+
+.input-box {
+    margin: 8px 0;
+    padding: 10px;
+    width: 90%;
+    border-radius: 20px;
+    border: 1px solid #999;
+}
+
+.submit-button {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #999;
+    background-color: green;
+    border-radius: 20px;
+}

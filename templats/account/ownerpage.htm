@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>owner details</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/userprofile.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="profileimgdiv">
+            <div class="img">
+                <img  class="profileimg" src="{% static 'media/me.jpg' %}">
+            </div>
+            <div class="username">
+                <h3>{{emp.user1.first_name}} {{emp.user1.last_name}}</h3>
+            </div>
+        </div>
+        <div class="introdiv">
+            <div class="introleft"">
+                <div style="width: 100%;height: 10vh;background-color: #fff;border-radius: 20px;margin: 3.33vh 0px;">
+                    <a href="/account/reportproblem?emp_id={{emp.user1.id}}" style="margin: auto;">Reptor Problem</a>
+                </div>
+                <div style="width:100%;min-height: 20vh;background-color: #fff;border-radius: 20px;margin: 3.33vh 0px;">
+                    <ul>
+                        <li style="overflow-wrap: break-word;">from {{emp.user2.address}}</li>
+                        <li>working as {{emp.user2.post}}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="introright">
+                <a href="/account/sendmessage">Send Message</a>
+                {% if user.username == emp.user1.username %}
+                <a href="/account/viewmessage">View Message({{msgcount}} new Message)</a>
+                <a href="/account/addemployee">Add employee</a>
+                {% if emp.user2.post_id == 4 %}
+                <a href="/account/addproject">Start new project</a>
+                {% endif %}
+                {% if emp.user2.post_id == 7 %}
+                <a href="/account/checkmaterial">Check availability of material</a>
+                <a href="/account/checkissued">Check machines issued details</a>
+                {% endif %}
+                {%endif%}
+            </div>
+        </div>
+        <div class="attendance">
+            {% if logedinpostid != 3 and  logedinpostid != 5 and allunderworkers %}
+            <div style="width:80%;margin:  20px auto;">
+                <p style="margin: 0;">Employee working under this employee:</p>
+                <table style="width: 100%;margin: 0;">
+                    <tr>
+                        <th>S.no.</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Address</th>
+                        <th>Phone no.</th>
+                        <th>Age</th>
+                        <th>employee details</th>
+                    </tr>
+                    {% for siteeng in allunderworkers %}
+                    <tr>
+                        <td>{{forloop.counter}}</td>
+                        <td>{{siteeng.user1.first_name}} {{siteeng.user1.last_name}}</td>
+                        <td>{{siteeng.user1.username}}</td>
+                        <td>{{siteeng.user2.address}}</td>
+                        <td>{{siteeng.user2.phone_no}}</td>
+                        <td>{{siteeng.user2.age}}</td>
+                        <td><a href="{% url 'employeeprofile' siteeng.user1.id %}">view details</a></td>
+                    </tr>
+                    {%endfor%}
+                </table>
+            </div>
+            {%else%}
+            No employee working under this employee
+            {%endif%}
+        </div>
+    </div>    
+</body>
+</html>

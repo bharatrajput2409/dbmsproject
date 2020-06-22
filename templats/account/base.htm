@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'stylesheet/style.css' %}">
+    {%block title%}
+    {%endblock%}
+</head>
+
+<body>
+    <div style="display: flex;flex-direction: column;width: 100%;">
+        <h1 style="text-align: center;margin: 0;">Welcome To Royaal Construction</h1>
+        <div class="attendence">
+            {% if user.is_authenticated %}
+            <p > Welcome, <a href="/account/employeeprofile?id={{user.id}}">{{user.username}}</a> </p>
+            <div style=" margin:auto 0 auto auto;">
+                <a href="/account/logout" style="width: 20px;background-color:green;padding: 10px;color: black;border-radius: 20px ;">logout</a>
+                
+            </div>            
+            {%else%}
+            <a href="/account/signin">login</a>
+            {%endif%}
+        </div>
+        {% block content %}
+
+        {%endblock%}
+        </div>     
+    </div>
+    <footer style="text-align: center;">
+        <h3>developed by Bharat Rajput/Abhay Mishra</h3>
+    </footer>
+
+</body>
+
+</html>

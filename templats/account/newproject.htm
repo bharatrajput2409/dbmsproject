@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start new project</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/newproject.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div style="margin: 0px auto; text-align: center;">
+            <h3 style="color: green;">Fill the details to start new project</h3>
+        </div>
+        <form action="/account/addproject" method="POST">
+            {% csrf_token %}
+            <div>
+                <input type="text" id="name" placeholder="name of project" name="name" required>
+                <input type="text" id="budget" placeholder="estimated budget of project" name="budget" required>
+                <input type="text" id="location" placeholder="location of project" name="location" required>
+                <input type="date" id="deadline" placeholder="deadline of project...YYYY-MM-DD" name="deadline" required>
+                <input type="text" id="hop_id" placeholder="head of project id" name="hop_id" required >
+            </div>
+            <div style="margin: auto;">
+                <input type="submit" id="submit" value="Add project" >
+            </div>
+        </form>
+        <div style="text-align: center;margin: 0px auto;">
+            {% for message in messages%}
+            <h4>{{message}}</h4>
+            {%endfor%}
+        </div>
+    </div>    
+</body>
+</html>

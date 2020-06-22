@@ -1,0 +1,44 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view message</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/addmessage.css' %}" >
+</head>
+<body>
+    <div class="container1">
+        {% if empmessage %}
+        <table>
+            <tr>
+                <th>Sender</th>
+                <th>Reciver</th>
+                <th>Message</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+            {%for m in empmessage %}
+            <tr>
+                {% if user.id == m.sender_id %}
+                <td>YOU</td>
+                {%else%}
+                <td>{{m.sender}}</td>
+                {%endif%}
+                {%if user.id == m.reciver_id %}
+                <td>YOU</td>
+                {%else%}
+                <td>{{m.reciver}}</td>
+                {%endif%}                
+                <td>{{m.content}}</td>
+                <td>{{m.date}}</td>
+                <td>{{m.status}}</td>                
+            </tr>
+            {% endfor %}
+        </table>
+        {%else%}
+        <p style="margin: auto;">No Message Found</p>
+        {%endif%}
+    </div>    
+</body>
+</html>

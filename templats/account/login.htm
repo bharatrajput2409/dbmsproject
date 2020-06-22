@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'stylesheet/style.css' %}">
+    <title>Sign in!</title>
+</head>
+
+<body>
+   
+    <div class="loginbox">
+        {% for message in messages %}
+        <h3> {{message}}</h3>
+        {% endfor %}
+        <form action="/account/signin" method="post">
+            {% csrf_token %}
+            <h1>Login Here</h1>
+            <input type="text" class="input-box" name="username" placeholder="handle..."><br>
+            <input type="password" class="input-box" name="password" placeholder="password..."><br>
+            <input type="submit" class="button" value="Login !">
+        </form>
+        <hr>
+        <p class="or">Don't have account ? <a href="register">create account</a> </p>
+
+    </div>
+
+</body>
+
+</html>

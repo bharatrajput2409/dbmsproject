@@ -1,0 +1,35 @@
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>view material status</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/addmessage.css' %}" >
+</head>
+<body>
+    <div class="container1">
+        
+        <table>
+            <tr>
+                <th>s.no</th>
+                <th>quantity for demand</th>
+                <th>given quantity</th>
+                <th>material</th>
+                <th>used quantity</th>
+            </tr>
+            {%for m in matforpro %}
+            <tr>
+                
+                <td>forloop.counter</td>
+                <td>{{m.quantity_demand}}</td>
+                <td>{{m.given_quantiy}}</td>
+                <td>{{m.mat}}</td>
+                <td>{{m.used_quantity}}</td>                
+            </tr>
+            {% endfor %}
+        </table>
+       
+    </div>    
+</body>
+</html>

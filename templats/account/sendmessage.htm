@@ -1,0 +1,31 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send message</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/addmessage.css' %}">
+</head>
+<body>
+    <div class="container">
+        <form action="/account/sendmessage" method="POST">
+            {%csrf_token%}
+            <div class="reciver">
+            <input id="empid" type="text" placeholder="employee id/employee username" name="empid" required>
+            </div>
+            <hr style="width: 89%;">
+            <div class="contentbox">
+                <textarea class="content" required name="content"></textarea>
+            </div>
+            <div style="display: flex;flex-direction: column;">
+                <input type="submit" value="send" class="send" >
+                {%for m in messages%}
+                <p style="margin: auto;font-size: large;color: red;">{{m}}</p>
+            {%endfor%}
+            </div>
+            
+        </form>
+    </div>    
+</body>
+</html>

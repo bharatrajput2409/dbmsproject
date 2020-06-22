@@ -1,0 +1,28 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgba(1,1,0,0.1);
+}
+.container{
+    width: 60%;
+    margin: auto;
+}
+form{
+    margin: 5em 2em 0em 2em;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+input{
+    width: 200px;
+    background-color: white;
+    margin: 50px auto;
+    padding: 10px;
+    border-radius: 20px;
+    border-width: 0px;
+    color: grey;
+}
+#submit{
+    background-color: green;
+    color: black;
+}

@@ -1,0 +1,36 @@
+{%load static%}
+<DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Issue Tools</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/machinery.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center;padding: 100px;">
+            <p>Fill the Details to issue a Tools</p>
+        </div>
+        <form action="/project/issuetools" method="POST" class="centreform">
+            {%csrf_token%}
+            <input type="text" placeholder="employee id..." required name="empid" >
+            <input type="text" placeholder="tool quantity..." required name="toolquantity" >
+            <select name="tool_name" required>
+                <option disabled selected hidden>Sellect a tool</option>
+                {% for t in tools %}
+                <option value="{{t.name}}">{{t.name}}</option>
+                {%endfor%}
+            </select>
+            <div>
+                <input type="submit" value="add machine" style="background-color: green;">
+            </div>
+            <div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {%endfor%}
+            </div>
+        </form>
+    </div>    
+</body>
+</html>

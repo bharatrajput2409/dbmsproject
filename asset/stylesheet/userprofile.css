@@ -1,0 +1,59 @@
+body{
+    margin: 0;
+    background-color: rgba(0,0,0,.1);
+}
+.container{
+    width: 70%;
+    min-height: 100vh;
+    margin: 30px auto;
+    
+
+}
+.profileimg{
+   
+    width: 100%;
+    min-height: 20px;
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto;
+    background-color: #fff;
+    border-radius: 20px;
+    border-width: 0.5px 0px 0.5px 0px;
+}
+.img{
+    width: 190px;
+    margin: 20px 20px;
+    height: 190px;
+    border-radius: 95px;
+    box-shadow: 0 0 30px grey;
+    padding: 2px;
+}
+.username{
+    width: 60%;
+    margin: auto;
+}
+.introdiv{
+    
+    width: 100%;
+    min-height: 40vh;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: row;
+}
+.introleft{
+    width: 35%;
+    min-height: 40vh;
+    margin-right: 5%;
+}
+.introright{
+    background-color: #fff;
+    border-radius: 20px;
+    width: 60%;
+    min-height: 30vh;
+}
+.attendance{
+    background-color: #fff;
+    border-radius: 20px;
+    min-height: 300px;
+    padding: 10px;
+}

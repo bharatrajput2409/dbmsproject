@@ -1,0 +1,63 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machinery Shop</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/machinery.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align: center;margin: 0;">Machinery shope</h1>
+        <div class="logindetails">
+            <p style="margin: 0;padding: 0;">{{user.username}}</p>
+            <a style="margin-left: auto;" href="account/logout">logout</a>
+        </div>
+        <h1 style="text-align: center;margin: 0;">{{pro.name}},{{pro.location}} </h1>
+        <div class="bottom">
+            <div class="bottomleft">
+                    
+            </div>
+            <div class="bottomright">
+                <div style="display: flex; flex-direction: row; flex-wrap: wrap;margin: auto;">
+                    <a href="/project/issuemachine" class="button">Issue Machine</a>
+                    <a href="/project/issuetools" class="button">Issue Tools</a>
+                    <form action="/project/checkoutmachine" method="POST" >
+                        {%csrf_token%}
+                        <label>check out machine/tools</label>
+                        <input type="text" placeholder="employee id... " name='employeeid' class="machinecheckout" required>
+                        <input type="submit" value="check details" >
+                    </form>
+                    
+                    <div style="display: flex; width: 100%;">
+                        {%for m in messages %}
+                            <p style="color: red;margin: auto;">{{m}}</p>
+                        {%endfor%}
+                    </div>
+                </div>
+                <div style="width: 100%;margin: 40px auto;">
+                    <form action="/project/checkstatus" style="text-align: center;" class="checkstatus" method="POST">
+                        {% csrf_token %}
+                        <select name="itemname" required>
+                            <option disabled selected hidden>Sellect a machine/tool</option>
+                            {% for m in machines %}
+                            <option value="{{m.name}}">{{m.name}}</option>
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Check availability">
+                    </form>
+                </div>
+                <div style="margin: 40px auto;text-align: center;">
+                    <a class="button" href="/project/addtools">Add or Remove Tools</a>
+                    <a class="button" href="/project/addmachine">Add or Remove a Machine</a>
+                </div>
+                <div style="margin: 60px auto;text-align: center;">
+                    <a class="button" href="/project/addmat">Add/update material quantity</a>
+                    <a class="button" href="/project/demandmat">Add demand for material</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

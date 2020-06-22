@@ -1,0 +1,34 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add/update material</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/machinery.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div style="text-align: center;padding: 100px;">
+            <p>Fill the Details to add demand of material</p>
+        </div>
+        <form action="/project/demandmat" method="POST" class="centreform">
+            {%csrf_token%}
+            <input type="text" placeholder="Demand quantity ?" required name="total_quantity" >
+            <select name="item_cat">
+                {%for m in mat%}
+                    <option value="{{m.name}}" >{{m.name}}</option>
+                {%endfor%}
+            </select>
+            <div>
+                <input type="submit" value="add machine" style="background-color: green;">
+            </div>
+            <div>
+                {% for message in messages %}
+                <p>{{message}}</p>
+                {%endfor%}
+            </div>
+        </form>
+    </div>    
+</body>
+</html>

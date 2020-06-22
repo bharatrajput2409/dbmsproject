@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singh up!</title>
+    <link rel="stylesheet" href="{% static 'stylesheet/addemployee.css' %}">
+</head>
+
+<body>
+    <div style="text-align: center;">
+        {% for message in messages %}
+        <h3> {{message}}</h3>
+        {% endfor %}
+    </div>
+    <div class="register-box">
+        <h1> Sign Up Now</h1>
+        <form action="/account/addemployee" method="post">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="first name" class="input-box" id="fname" required><br>
+            <input type="text" name="last_name" placeholder="last name" class="input-box" required id="lname"><br>
+            <input type="text" name="username" placeholder="username" class="input-box" required id="uname"><br>
+            <input type="email" name="email" placeholder="email..." class="input-box" required id="email"><br>
+            <input type="text" name="address" placeholder="address..." class="input-box" required id="address"><br>
+            <input type="text" name="phoneno" placeholder="phoneno..." class="input-box" required id="phoneno"><br>
+            <input type="text" name="age" placeholder="age..." class="input-box" required id="age"><br>
+            <input type="text" name="salary" placeholder="salary..." class="input-box" required id="salary"><br>
+            <label for="post">select post</label>
+            <select name="post" id="post">
+                {% for post in posts%}
+                <option  value="{{post.name}}">{{post.name}}</option>
+                {%endfor%}
+            </select><br>
+            <input type="password" name="password1" placeholder="password" class="input-box" required id="password"><br>
+            <input type="password" name="password2" placeholder="re-entre passowrd" class="input-box" required id="repassword"><br>
+            <input type="text" name="supervisor" placeholder="supervisor" class="input-box" required id="supervisor"><br>
+            <label for="department">select department</label>
+            <select name="department" id="department">
+                {% for dept in depts%}
+                <option value="{{dept.name}}">{{dept.name}}</option>
+                {% endfor %}
+            </select><br>
+            <input type="submit" value="Register">
+        </form>
+        
+    </div>   
+</body>
+
+</html>

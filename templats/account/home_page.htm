@@ -1,0 +1,49 @@
+{% extends 'account/base.htm' %}
+
+{%block title%}
+<title>Home page</title>
+{%endblock%}
+{% block content%}
+<div class="bottomdiv">
+    <div class="leftdiv">
+        <h3>Quick Links</h3>
+        <a href="/project/machinery">login to Machinery</a>
+    </div>
+    <div class="rightdiv">
+        <div style="text-align: center;">
+        {%for m in messages%}
+            <p style="color: red;">ERROR: {{m}}</p>
+        {%endfor%}
+        </div>
+        <table>
+            <tr>
+                <th>s.no.</th>
+                <th>project name</th>
+                <th>project location</th>
+                <th>head of project</th>
+                <th>budget</th>
+                <th>deadline</th>
+                <th>no of employee</th>
+                {%if user.is_authenticated %}
+                <th>details</th>
+                {%endif%}
+            </tr>
+            {% for project in projects %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{project.name}}</td>
+                <td>{{project.location}}</td>
+                <td>{{project.hop}}</td>
+                <td>{{project.budget}}</td>
+                <td>{{project.deadline}}</td>
+                <td>{{project.no_of_emp}}</td>
+                {%if user.is_authenticated %}
+                <td><a href="/project/loadprodetails?id={{project.id}}">view details</a></td>
+                {%endif%}
+                
+            </tr>
+            {%endfor%}
+        </table>
+    </div>
+</div>
+{%endblock%}
